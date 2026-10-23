@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.1
+
+- Keep the main implementation or investigation in Codex. Review and integration alone are not enough.
+- Start with one bounded Claude assignment. Reassess before assigning more work.
+- Reduce assignment size or worker count after a request for less delegation. Preserve useful parallel work unless the user asks to stop.
+- Apply the same work split in the skill, its default prompt, and the installed global rule.
+- Validate the installer update and delegation decisions. See VALIDATION.md for results.
+
+Known limit: the host model applies these instructions. They do not enforce a numeric work ratio.
+
 ## 1.0.0
 
 - Add a Codex skill that assigns independent work to Claude Code while Codex continues.

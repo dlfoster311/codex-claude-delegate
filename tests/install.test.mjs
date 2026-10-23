@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { install, updateInstructions } from '../scripts/install.mjs';
+import { install, updateInstructions, DEFAULT_RULE } from '../scripts/install.mjs';
 
 test('global rule is idempotent and preserves unrelated instructions byte for byte', () => {
   const original = 'User rules.\r\nPreserve this line.\r\n';
@@ -11,6 +11,15 @@ test('global rule is idempotent and preserves unrelated instructions byte for by
   assert.ok(updated.startsWith(original));
   assert.equal(updateInstructions(updated), updated);
   assert.throws(() => updateInstructions('<!-- BEGIN claude-code-delegate -->'), /invalid markers/);
+});
+
+test('an existing global rule is replaced while surrounding user instructions stay intact', () => {
+  const before = 'User instruction before the rule.\r\n\r\n';
+  const after = '\r\n\r\nUser instruction after the rule.\r\n';
+  const old = '<!-- BEGIN claude-code-delegate -->\nPrevious delegation policy.\n<!-- END claude-code-delegate -->';
+  const updated = updateInstructions(before + old + after);
+  assert.equal(updated, before + DEFAULT_RULE + after);
+  assert.equal(updateInstructions(updated), updated);
 });
 test('install verifies files, preserves active override, and keeps update backups', () => {
   const home = fs.mkdtempSync(path.join(os.tmpdir(), 'claude-install-test-'));

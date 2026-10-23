@@ -1,0 +1,34 @@
+[
+  {
+    "id": "feature",
+    "request": "Add CSV export. The exporter, UI button, and export fixtures are separate files. The interfaces are defined and each part takes meaningful work. Describe your next actions and who produces each result."
+  },
+  {
+    "id": "reduce",
+    "request": "You had Claude build almost everything so far. Do more of the work yourself. We still need the exporter implementation and independent fixture tests, in separate files. Describe your next actions and who produces each result."
+  },
+  {
+    "id": "refill",
+    "request": "Claude finished the parser and mapping changes. You only reviewed and applied those changes. The next remaining tasks are the exporter and its independent fixtures. The Claude worker is free. Describe your next actions and who produces each result."
+  },
+  {
+    "id": "stop",
+    "request": "Do not use Claude for this task. Implement the exporter and its tests yourself. There are no active workers. Describe your next actions and who produces each result."
+  },
+  {
+    "id": "tiny",
+    "request": "Fix one spelling error in a button label. The file and line are already known. Describe your next actions and who produces each result."
+  },
+  {
+    "id": "unknown_usage",
+    "request": "Implement an exporter and separate fixture tests. Both require meaningful work, and their interface is defined. Claude is available and authenticated, but both usage snapshots are missing. Describe your next actions and who produces each result."
+  },
+  {
+    "id": "unequal_usage",
+    "request": "Implement an exporter and separate fixture tests. Fresh comparable usage windows show that Codex has less allowance remaining than Claude. Neither platform has reported a limit. Both parts require meaningful work. Describe your next actions and who produces each result."
+  },
+  {
+    "id": "final_review",
+    "request": "You wrote the exporter and its tests directly. An independent review of the CSV escaping code is useful because it handles untrusted text. Integration tests still need to run and you will inspect their results. Describe your next actions and who produces each result."
+  }
+]

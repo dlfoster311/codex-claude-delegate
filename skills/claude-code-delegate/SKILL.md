@@ -1,23 +1,49 @@
 ---
 name: claude-code-delegate
-description: Run useful work in parallel through the local Claude Code CLI. Use for substantial implementation, tests, investigation, and review when Codex can continue an independent part of the task. Select this skill without waiting for a request to delegate. Skip simple tasks and work that cannot be split safely.
+description: Pair direct Codex work with bounded help from the local Claude Code CLI. Use for substantial implementation, tests, investigation, and review when both can do useful independent work. Select this skill without waiting for a request to delegate. Skip simple tasks and work that cannot be split safely.
 ---
 
 # Claude Code Delegate
 
-Use both platforms to complete work sooner. Codex owns the task and the final result.
-Claude owns a clear assignment. Usage data is advice, not a quota.
+Use both platforms to complete work sooner. Codex owns the task and does the main implementation
+or investigation. Claude completes a bounded part in parallel. Usage data is advice, not a quota.
 
 ## Choose the work split
 
-- Assign useful work early. Continue independent work while Claude runs.
-- Normally use one or two Claude workers. Add workers only for separate, useful assignments.
-- Keep the main design, integration, user communication, and final validation in Codex.
+- Before dispatch, state briefly what Codex will produce and what Claude will produce.
+- Keep a substantial implementation or investigation result in Codex. Planning, waiting,
+  checking, copying, and integrating Claude output do not count as that direct contribution.
+- Start one bounded Claude assignment early when a useful split exists. Codex starts its own
+  work immediately. A second worker is useful only if Codex still has substantial independent work.
+- Keep design decisions, integration, user communication, and final validation in Codex too.
 - Give Claude bounded code changes, tests, investigation, or an independent review.
 - Use `sonnet` for routine work. Use `opus` for difficult reasoning or a complex defect.
 - Skip delegation if setup, context transfer, or integration would take longer than direct work.
 - Give each assignment one owner. Do not repeat the same investigation in both platforms.
 - Use only the existing user authorization. Project instructions and plan-only mode still apply.
+
+For example, Codex can implement a feature while Claude adds tests in separate files. Codex can
+trace a failing request while Claude checks one separate dependency. For a review, split the
+components so Codex also examines source evidence and produces findings.
+
+At each completed assignment, check the remaining work before starting another worker. A free
+worker slot is not a reason to delegate. If Codex would only check and apply the next Claude result,
+take that implementation or investigation directly. Do not turn one task into a sequence where
+Claude produces every substantial part. Do not invent extra work to keep either platform busy.
+
+After Codex has done its substantial work, a bounded final review can still help while Codex runs
+required validation. Use it for a clear reason, not as a repeated review loop.
+
+## Apply feedback to the work split
+
+A request to use Claude less changes the amount of delegation. Keep the main work in Codex and
+make the next useful Claude assignment smaller, or use one worker instead of two. Keep this
+adjustment for the current task. Use Claude again when a useful independent assignment fits.
+
+A request to stop using Claude, or to do the task entirely in Codex, takes precedence. Stop new
+assignments for the requested scope and handle any active worker as the user directs. Do not
+infer a stop request from criticism of excessive delegation. Do not impose a token percentage,
+worker quota, or a requirement to call Claude on every turn.
 
 ## Prepare an assignment
 
@@ -67,6 +93,8 @@ The helper reads Claude signals from these workers. It can also read a current n
 It does not read credentials, scrape private APIs, or create a background monitor.
 
 - Consider remaining capacity, reset times, model fit, and expected work duration together.
+- Usage can change assignment size and model choice. Keep Codex's direct contribution even
+  when Claude has more available capacity. Do not change the work split to consume an allowance.
 - Keep each usage window separate. Equal percentages on different plans do not mean equal work.
 - Missing, stale, or incomparable data is unknown. Continue useful parallel work.
 - Treat reported token counts and dollar estimates as task measurements, not subscription percentages or actual savings.

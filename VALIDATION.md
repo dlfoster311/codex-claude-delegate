@@ -1,8 +1,25 @@
 # Validation
 
-Release: 1.0.0. Local validation date: 2026-10-22.
+Release: 1.0.1. Local validation date: 2026-10-23.
 
-## Verified locally
+## Version 1.0.1
+
+- JavaScript syntax, JSON checks, and all 78 automated tests passed on Windows.
+- The added installer test replaced an old managed rule and preserved surrounding user instructions.
+- The Codex skill validator passed. Automatic selection remains enabled.
+- A fresh Codex evaluator passed all eight [delegation decision checks](tests/behavior/README.md).
+  It received the skill and requests, without the scoring guide or earlier results.
+- Codex retained the main implementation in the feature, reduced-delegation, completed-worker,
+  and usage cases. It used no worker for the explicit stop or tiny edit. It allowed a bounded
+  final review after Codex had done the implementation.
+- One real Sonnet job proposed test scenarios while Codex wrote the policy, installer rule,
+  regression test, and documentation. The worker changed no source files.
+
+These decision checks test instructions. They do not prove behavior throughout every future task.
+The runner and usage algorithms did not change in this release. Their live execution checks from
+version 1.0.0 are recorded below. CI runs the automated suite on all six platform/version pairs.
+
+## Version 1.0.0 live checks (2026-10-22)
 
 - JavaScript syntax and JSON checks passed. Plain JavaScript needs no separate build.
 - All 77 automated tests passed on Windows with Node.js 24.19.0.

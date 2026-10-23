@@ -1,6 +1,6 @@
 interface:
   display_name: "Claude Code Delegate"
   short_description: "Run useful work in parallel with Claude Code"
-  default_prompt: "Use $claude-code-delegate to assign independent work to Claude while you continue the main task."
+  default_prompt: "Use $claude-code-delegate for one bounded parallel assignment while you do the main implementation or investigation."
 policy:
   allow_implicit_invocation: true

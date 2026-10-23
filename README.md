@@ -48,7 +48,7 @@ You can also select the skill directly:
 | Codex | Claude Code |
 | --- | --- |
 | Plans the work and defines each assignment | Completes a bounded assignment |
-| Continues an independent task | Implements, investigates, tests, or reviews |
+| Does the main implementation or investigation | Implements, investigates, tests, or reviews a bounded part |
 | Reviews changes and runs required checks | Returns files, findings, tests, and blockers |
 | Integrates the result and reports to you | Keeps its work within the assigned scope |
 
@@ -65,14 +65,20 @@ flowchart LR
   F --> G[Verified result]
 ```
 
-- **Start early.** Normally use one or two independent Claude assignments.
-- **Keep working.** The helper returns a job ID immediately. Codex can continue before Claude finishes.
+- **Start early with one assignment.** Add a second worker only when Codex still has substantial independent work.
+- **Keep Codex active.** Codex does the main implementation or investigation while Claude works on a bounded part.
+- **Name both results.** State what each platform will produce. Reviewing and applying Claude output alone is not enough.
+- **Reassess the next assignment.** A completed worker does not automatically receive another task.
 - **Choose the model.** Use Sonnet for routine work and Opus for difficult work.
 - **Separate edits.** Use isolated worktrees and clear file ownership.
 - **Check the result.** A successful CLI run is not proof that the task is complete.
 - **Stop when needed.** Cancellation stops the worker and retains its files and partial output.
 
 Simple tasks stay in Codex when delegation would add delay. No fixed split or spending quota applies.
+
+If you ask for less delegation, Codex keeps the main work and reduces the size or number of Claude
+assignments. It still uses Claude when useful independent work remains. An explicit request to stop
+Claude takes precedence. More available Claude usage does not transfer all substantive work to Claude.
 
 ## Usage awareness
 
