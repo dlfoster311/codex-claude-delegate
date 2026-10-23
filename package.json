@@ -1,0 +1,16 @@
+{
+  "name": "codex-claude-delegate",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A Codex skill for useful parallel work with Claude Code.",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "lint": "node scripts/check.mjs",
+    "test": "node --test --test-concurrency=1 tests/runner.test.mjs tests/usage.test.mjs tests/usage-cli.test.mjs tests/install.test.mjs",
+    "check": "npm run lint && npm test",
+    "install:skill": "node scripts/install.mjs",
+    "smoke:live": "node scripts/smoke.mjs"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "objective": "Find the cause of the clamp test failure. Read the implementation and tests. Return the exact defect and the required correction. Do not change files.",
+  "instructions": ["This is a local test fixture. No external access is needed."],
+  "files": ["clamp.mjs", "clamp.test.mjs"],
+  "checks": ["Cite the incorrect expression and one failing input."]
+}

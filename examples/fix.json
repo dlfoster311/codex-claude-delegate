@@ -1,0 +1,8 @@
+{
+  "objective": "Fix clamp so values below min return min, values above max return max, and interior values stay unchanged.",
+  "instructions": ["Change only clamp.mjs. Do not change tests. This is an isolated local test worktree."],
+  "files": ["clamp.mjs", "clamp.test.mjs"],
+  "allowedChanges": ["clamp.mjs"],
+  "checks": ["Run node --test clamp.test.mjs if permitted. Report the actual result."],
+  "allowedCommands": ["Bash(node --test clamp.test.mjs)"]
+}
