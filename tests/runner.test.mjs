@@ -103,6 +103,15 @@ test('an absent report or a successful exit alone cannot mean success', () => {
   assert.equal(finalResult({ type: 'result', is_error: true, subtype: 'error' }, 0).state, 'failed');
   assert.equal(finalResult({ type: 'result', is_error: false, subtype: 'success' }, 0).state, 'failed');
 });
+
+test('a workspace alias resolves before file containment checks', t => {
+  const alias = path.join(root, 'workspace-alias');
+  try { fs.symlinkSync(workspace, alias, 'junction'); }
+  catch (error) { if (['EPERM', 'ENOTSUP'].includes(error.code)) { t.skip('Links are not available.'); return; } throw error; }
+  const task = validateTask({ objective: 'x', allowedChanges: ['new.txt'] }, alias, 'edit');
+  assert.deepEqual(task.allowedChanges, ['new.txt']);
+  assert.throws(() => validateTask({ objective: 'x', files: ['../outside'] }, alias, 'read'), /relative/);
+});
 test('invalid job IDs and CLI options fail early', async () => {
   await assert.rejects(main(['status', '--job', '../outside', '--state-dir', state]), /job ID/);
   assert.throws(() => parseArgs(['start', '--mode']), /value/);

@@ -5,7 +5,7 @@ Release: 1.0.0. Local validation date: 2026-10-22.
 ## Verified locally
 
 - JavaScript syntax and JSON checks passed. Plain JavaScript needs no separate build.
-- All 76 automated tests passed on Windows with Node.js 24.19.0.
+- All 77 automated tests passed on Windows with Node.js 24.19.0.
 - The Codex skill validator passed.
 - Claude Code 2.1.308 completed two jobs in parallel through the runner.
 - One job diagnosed the sample defect without edits. The other fixed one file in an isolated Git worktree.
@@ -21,7 +21,7 @@ assignments. This is a small fixture result, not a general speed benchmark.
 
 Claude also built the usage helper and reviewed the runner. Codex inspected the returned files,
 ran the tests, and fixed supported review findings before publication. Regression checks cover
-worker callback failures, temporary Windows file locks, installation rollback, path links, and
+worker callback failures, temporary Windows file locks, installation rollback, workspace aliases, path links, and
 malformed results.
 
 ## Reproduce

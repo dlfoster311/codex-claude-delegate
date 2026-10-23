@@ -89,6 +89,7 @@ function localPath(workspace, value) {
 }
 
 export function validateTask(task, workspace, mode) {
+  workspace = fs.realpathSync(workspace);
   if (!task || typeof task !== 'object' || Array.isArray(task)) throw new Error('Task must be a JSON object.');
   const allowed = ['objective', 'instructions', 'files', 'allowedChanges', 'checks', 'allowedCommands'];
   for (const key of Object.keys(task)) if (!allowed.includes(key)) throw new Error('Unknown task field: ' + key);
